@@ -6,17 +6,31 @@ import ReactDOM from 'react-dom';
 // const el = <h1>Hello world</h1>
 // jsx создаёт легковесный объекты, содежа в себе не много свойств
 
-const el = (
-  <div>
-    <h1>My Todo List</h1>
-    <input placeholder="search"></input>
+const TodoList = () => {
+  return (
     <ul>
       <li>Learn React</li>
       <li>Build Awesome App</li>
     </ul>
-  </div>
-)
+  );
+};
 
+const AppHeader = () => {
+  return <h1>My Todo List</h1>;
+};
 
+const SearchPanel = () => {
+  return <input placeholder='search'></input>;
+};
 
-ReactDOM.render(el, document.getElementById('root'))
+const App = () => {
+  return (
+    <div>
+      <AppHeader />
+      <SearchPanel />
+      <TodoList />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
