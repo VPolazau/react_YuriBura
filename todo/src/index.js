@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// const el = React.createElement('h1',null, 'Hello world!!')
-// то же самое что и ниже, но сверху js, а снизу jsx
-// const el = <h1>Hello world</h1>
-// jsx создаёт легковесный объекты, содежа в себе не много свойств
-
 const TodoList = () => {
+  const items = ['Drink Coffee', 'Build Awesome App'];
   return (
     <ul>
-      <li>Learn React</li>
-      <li>Build Awesome App</li>
+      <li>{items[0]}</li>
+      <li>{items[1]}</li>
     </ul>
   );
 };
@@ -20,12 +16,26 @@ const AppHeader = () => {
 };
 
 const SearchPanel = () => {
-  return <input placeholder='search'></input>;
+  const searchText = 'Type here to search';
+  const searchStyle = {
+    fontSize: '20px',
+  };
+
+  return <input style={searchStyle} placeholder={searchText}></input>;
 };
 
 const App = () => {
+  const isLoginIn = Math.random() < 0.5;
+  const loginBox = <span>Log in please</span>;
+  const wellcomeBox = <span>Wellcome Back</span>;
+  const value = '<script>alert("")</script>';
+
   return (
     <div>
+      {value}
+      {isLoginIn ? wellcomeBox : loginBox}
+      <br></br>
+      <span>{new Date().toString()}</span>
       <AppHeader />
       <SearchPanel />
       <TodoList />
