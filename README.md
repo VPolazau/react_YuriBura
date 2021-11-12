@@ -8,5 +8,5 @@
 BROWSER=Google Chrome Dev
 ```
 
-1. **first_project** – Первый реакт проект: список
-2. **todo** –
+1. **first_project** – Первый реакт проект: список.
+2. **todo** – ToDoList проект. Все компоненты раскиданы по файлам в папке /components.
