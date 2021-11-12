@@ -8,4 +8,5 @@
 BROWSER=Google Chrome Dev
 ```
 
-**first_project** – Первый реакт проект: список
+1. **first_project** – Первый реакт проект: список
+2. **todo** –
