@@ -1,17 +1,18 @@
 import React from 'react';
 import TodoListItem from './todo-list-item';
 
-const TodoList = () => {
-  return (
-    <ul>
+const TodoList = ({ todos }) => {
+  const elements = todos.map(item => {
+    return (
       <li>
-        <TodoListItem label='Drink Coffee' />
+        {/* когда имена свойств компанента совпадают с именами свойств объекта можно использовать стпред оператор */}
+        {/* <TodoListItem label={item.label} important={item.important} /> */}
+        {/* вместо верхней записи используем нижнюю */}
+        <TodoListItem {...item} />
       </li>
-      <li>
-        <TodoListItem important label='Build Awesome App' />
-      </li>
-    </ul>
-  );
+    );
+  });
+  return <ul>{elements}</ul>;
 };
 
 export default TodoList;
