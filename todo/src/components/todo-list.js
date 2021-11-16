@@ -3,12 +3,11 @@ import TodoListItem from './todo-list-item';
 
 const TodoList = ({ todos }) => {
   const elements = todos.map(item => {
+    const { id, ...itemProps } = item;
+    console.log(item);
     return (
-      <li>
-        {/* когда имена свойств компанента совпадают с именами свойств объекта можно использовать стпред оператор */}
-        {/* <TodoListItem label={item.label} important={item.important} /> */}
-        {/* вместо верхней записи используем нижнюю */}
-        <TodoListItem {...item} />
+      <li key={id}>
+        <TodoListItem {...itemProps} />
       </li>
     );
   });
