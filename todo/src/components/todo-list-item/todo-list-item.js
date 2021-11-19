@@ -16,7 +16,7 @@ export default class TodoListItem extends React.Component {
 
   onMarkImportant = () => {
     this.setState({
-      important:true,
+      important: true,
     });
   };
 
@@ -35,8 +35,7 @@ export default class TodoListItem extends React.Component {
 
     return (
       <span className={classNames}>
-        <span className='todo-list-item-label' 
-              onClick={this.onLabelClick}>
+        <span className='todo-list-item-label' onClick={this.onLabelClick}>
           {label}
         </span>
 
