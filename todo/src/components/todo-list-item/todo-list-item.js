@@ -3,26 +3,24 @@ import React from 'react';
 import './todo-list-item.css';
 
 export default class TodoListItem extends React.Component {
-  // constructor(){
-  //   super();
-
-  //   this.onLabelClick = () => {
-  //     console.log(`Done: ${this.props.label}`);
-  //   };
-  // }
-
-  // Такая запись сверху полностью эквивалентна записи снизу
-  // В дальнейшем будем использовать её
-  // Свойство языка называется поля классов(class fields)
-  onLabelClick = () => {
-    console.log(`Done: ${this.props.label}`);
+  state = {
+    done: false,
   };
-  //
-  //
-  //
+
+  onLabelClick = () => {
+    this.setState({
+      done: true,
+    });
+  };
 
   render() {
     const { label, important = false } = this.props;
+    const { done } = this.state;
+
+    let classNames = 'todo-list-item';
+    if (done) {
+      classNames += ' done';
+    }
 
     const style = {
       color: important ? 'steelblue' : 'black',
@@ -30,7 +28,7 @@ export default class TodoListItem extends React.Component {
     };
 
     return (
-      <span className='todo-list-item'>
+      <span className={classNames}>
         <span
           className='todo-list-item-label'
           style={style}
