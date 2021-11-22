@@ -15,7 +15,7 @@ const App = () => {
   ];
 
   return (
-    <div className='todo-app'>
+    <div className='todo-app container'>
       <AppHeader toDo={1} done={3} />
       <div className='top-panel d-flex'>
         <SearchPanel />
