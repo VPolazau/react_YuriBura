@@ -8,9 +8,6 @@ export default class TodoListItem extends React.Component {
     important: false,
   };
 
-  // Обновление состояния
-  // setState принимает не объект, а функцию
-  // Аргумент - текущий state
   onLabelClick = () => {
     this.setState(({ done }) => {
       return {
@@ -28,7 +25,7 @@ export default class TodoListItem extends React.Component {
   };
 
   render() {
-    const { label } = this.props;
+    const { label, onDeleted } = this.props;
     const { done, important } = this.state;
 
     let classNames = 'todo-list-item';
@@ -57,6 +54,7 @@ export default class TodoListItem extends React.Component {
         <button
           type='button'
           className='btn btn-outline-danger btn-sm float-end'
+          onClick = {onDeleted}
         >
           <i className='fa fa-trash-o' />
         </button>
