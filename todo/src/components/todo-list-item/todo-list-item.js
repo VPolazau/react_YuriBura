@@ -1,40 +1,40 @@
-import React from 'react';
+import React from 'react'
 
-import './todo-list-item.css';
+import './todo-list-item.css'
 
 export default class TodoListItem extends React.Component {
   state = {
     done: false,
     important: false,
-  };
+  }
 
   onLabelClick = () => {
     this.setState(({ done }) => {
       return {
         done: !done,
-      };
-    });
-  };
+      }
+    })
+  }
 
   onMarkImportant = () => {
     this.setState(({ important }) => {
       return {
         important: !important,
-      };
-    });
-  };
+      }
+    })
+  }
 
   render() {
-    const { label, onDeleted } = this.props;
-    const { done, important } = this.state;
+    const { label, onDeleted } = this.props
+    const { done, important } = this.state
 
-    let classNames = 'todo-list-item';
+    let classNames = 'todo-list-item'
     if (done) {
-      classNames += ' done';
+      classNames += ' done'
     }
 
     if (important) {
-      classNames += ' important';
+      classNames += ' important'
     }
 
     return (
@@ -54,11 +54,11 @@ export default class TodoListItem extends React.Component {
         <button
           type='button'
           className='btn btn-outline-danger btn-sm float-end'
-          onClick = {onDeleted}
+          onClick={onDeleted}
         >
           <i className='fa fa-trash-o' />
         </button>
       </span>
-    );
+    )
   }
 }

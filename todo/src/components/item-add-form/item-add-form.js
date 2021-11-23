@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './item-add-form.css';
+import React, { Component } from 'react'
+import './item-add-form.css'
 
 export default class ItemAddForm extends Component {
   render() {
@@ -8,12 +8,12 @@ export default class ItemAddForm extends Component {
         <button
           className='btn btn-outline-secondary'
           onClick={() => {
-            this.props.onItemAdded('hello world');
+            this.props.onItemAdded('hello world')
           }}
         >
           Add Item
         </button>
       </div>
-    );
+    )
   }
 }

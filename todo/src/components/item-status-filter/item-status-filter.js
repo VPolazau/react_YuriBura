@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './item-status-filter.css';
+import React, { Component } from 'react'
+import './item-status-filter.css'
 
 export default class ItemStatusFilter extends Component {
   render() {
@@ -15,6 +15,6 @@ export default class ItemStatusFilter extends Component {
           Done
         </button>
       </div>
-    );
+    )
   }
 }

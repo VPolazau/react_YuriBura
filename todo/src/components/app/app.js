@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import AppHeader from '../app-header';
-import SearchPanel from '../search-panel';
-import TodoList from '../todo-list';
-import ItemStatusFilter from '../item-status-filter';
-import ItemAddForm from '../item-add-form';
+import AppHeader from '../app-header'
+import SearchPanel from '../search-panel'
+import TodoList from '../todo-list'
+import ItemStatusFilter from '../item-status-filter'
+import ItemAddForm from '../item-add-form'
 
-import './app.css';
+import './app.css'
 
 export default class App extends Component {
-  maxId = 100;
+  maxId = 100
 
   state = {
     todoData: [
@@ -17,31 +17,31 @@ export default class App extends Component {
       { label: 'Make Awesome App', important: false, id: 2 },
       { label: 'Have a lunch', important: false, id: 3 },
     ],
-  };
+  }
 
   deleteItem = id => {
     this.setState(({ todoData }) => {
-      const idx = todoData.findIndex(el => el.id === id);
+      const idx = todoData.findIndex(el => el.id === id)
 
-      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
+      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
 
-      return { todoData: newArray };
-    });
-  };
+      return { todoData: newArray }
+    })
+  }
 
   addItem = text => {
-    // generate id
     const newItem = {
       label: text,
       important: false,
       id: this.maxId++,
-    };
-    // add element in array
+    }
+
     this.setState(({ todoData }) => {
-      const newArray = [...todoData, newItem];
-      return { todoData: newArray };
-    });
-  };
+      const newArray = [...todoData, newItem]
+
+      return { todoData: newArray }
+    })
+  }
 
   render() {
     return (
@@ -55,6 +55,6 @@ export default class App extends Component {
         <TodoList todos={this.state.todoData} onDeleted={this.deleteItem} />
         <ItemAddForm onItemAdded={this.addItem} />
       </div>
-    );
+    )
   }
 }
