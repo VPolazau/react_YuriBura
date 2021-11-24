@@ -43,16 +43,31 @@ export default class App extends Component {
     })
   }
 
+  onToggleImportant = id => {
+    console.log('Toggle Important', id)
+  }
+
+  onToggleDone = id => {
+    console.log('Toggle Done', id)
+  }
+
   render() {
     return (
       <div className='todo-app container'>
         <AppHeader toDo={1} done={3} />
+
         <div className='top-panel d-flex'>
           <SearchPanel />
           <ItemStatusFilter />
         </div>
 
-        <TodoList todos={this.state.todoData} onDeleted={this.deleteItem} />
+        <TodoList
+          todos={this.state.todoData}
+          onDeleted={this.deleteItem}
+          onToggleImportant={this.onToggleImportant}
+          onToggleDone={this.onToggleDone}
+        />
+
         <ItemAddForm onItemAdded={this.addItem} />
       </div>
     )
