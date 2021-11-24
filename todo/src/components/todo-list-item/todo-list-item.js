@@ -3,22 +3,6 @@ import React from 'react'
 import './todo-list-item.css'
 
 export default class TodoListItem extends React.Component {
-  // onLabelClick = () => {
-  //   this.setState(({ done }) => {
-  //     return {
-  //       done: !done,
-  //     }
-  //   })
-  // }
-
-  // onMarkImportant = () => {
-  //   this.setState(({ important }) => {
-  //     return {
-  //       important: !important,
-  //     }
-  //   })
-  // }
-
   render() {
     const {
       label,
