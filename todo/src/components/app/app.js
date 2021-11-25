@@ -78,6 +78,11 @@ export default class App extends Component {
     })
   }
 
+  searchFilter = text => {
+    const similar = this.state.todoData.find(el => el.label === text)
+    console.log(similar);
+  }
+
   render() {
     const { todoData } = this.state
     const doneCount = todoData.filter(el => el.done).length
@@ -88,7 +93,7 @@ export default class App extends Component {
         <AppHeader toDo={todoCount} done={doneCount} />
 
         <div className='top-panel d-flex'>
-          <SearchPanel />
+          <SearchPanel searchFilter={this.searchFilter} />
           <ItemStatusFilter />
         </div>
 
