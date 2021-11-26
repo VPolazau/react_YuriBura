@@ -17,6 +17,7 @@ export default class App extends Component {
       this.createTodoItem('Make Awesome App'),
       this.createTodoItem('Have a lunch'),
     ],
+    buffer: [],
   }
 
   createTodoItem(label) {
@@ -79,8 +80,50 @@ export default class App extends Component {
   }
 
   searchFilter = text => {
-    const similar = this.state.todoData.find(el => el.label === text)
-    console.log(similar);
+    const length = text.length
+    const similar = this.state.todoData.find(
+      el => el.label.slice(0, length) === text
+    )
+    const buff = this.state.todoData
+    console.log(buff);
+    if (similar) {
+      this.setState(({ todoData, buffer }) => {
+        return {
+          todoData: [similar],
+          buffer: buff,
+        }
+      })
+    }
+    console.log(this.state.buffer)
+  }
+
+  onAll = () => {
+    console.log(this.state.todoData)
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.state.buffer,
+      }
+    })
+  }
+
+  onActive = () => {
+    const activeLabel = this.state.todoData.filter(
+      el => el.done === false
+    )
+    this.setState(({ todoData }) => {
+      return {
+        todoData: activeLabel,
+      }
+    })
+  }
+
+  onDone = () => {
+    const doneLabel = this.state.todoData.filter(el => el.done)
+    this.setState(({ todoData }) => {
+      return {
+        todoData: doneLabel,
+      }
+    })
   }
 
   render() {
@@ -94,7 +137,11 @@ export default class App extends Component {
 
         <div className='top-panel d-flex'>
           <SearchPanel searchFilter={this.searchFilter} />
-          <ItemStatusFilter />
+          <ItemStatusFilter
+            onAll={this.onAll}
+            onActive={this.onActive}
+            onDone={this.onDone}
+          />
         </div>
 
         <TodoList
