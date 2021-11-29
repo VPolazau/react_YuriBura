@@ -17,7 +17,6 @@ export default class App extends Component {
       this.createTodoItem('Make Awesome App'),
       this.createTodoItem('Have a lunch'),
     ],
-    buffer: [],
   }
 
   createTodoItem(label) {
@@ -82,26 +81,23 @@ export default class App extends Component {
   searchFilter = text => {
     const length = text.length
     const similar = this.state.todoData.find(
-      el => el.label.slice(0, length) === text
+      el => el.label.toUpperCase().slice(0, length) === text.toUpperCase()
     )
-    const buff = this.state.todoData
-    console.log(buff);
+    const idx = this.state.todoData.findIndex(el => el.id === similar.id)
     if (similar) {
-      this.setState(({ todoData, buffer }) => {
+      this.setState(({ todoData }) => {
         return {
-          todoData: [similar],
-          buffer: buff,
+          todoData: [similar, ...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
         }
       })
     }
-    console.log(this.state.buffer)
   }
 
   onAll = () => {
     console.log(this.state.todoData)
-    this.setState(({ todoData }) => {
+    this.setState(({ todoData, buff }) => {
       return {
-        todoData: this.state.buffer,
+        todoData: buff,
       }
     })
   }
@@ -110,8 +106,9 @@ export default class App extends Component {
     const activeLabel = this.state.todoData.filter(
       el => el.done === false
     )
-    this.setState(({ todoData }) => {
+    this.setState(({ todoData, buff }) => {
       return {
+        buff: todoData,
         todoData: activeLabel,
       }
     })
@@ -119,11 +116,13 @@ export default class App extends Component {
 
   onDone = () => {
     const doneLabel = this.state.todoData.filter(el => el.done)
-    this.setState(({ todoData }) => {
+    this.setState(({ todoData, buff }) => {
       return {
+        buff: todoData,
         todoData: doneLabel,
       }
     })
+    console.log(this.state.buff);
   }
 
   render() {
