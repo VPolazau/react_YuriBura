@@ -1,13 +1,20 @@
 // Асинхронная функция
-const getResourse = async (url) => {
-  // 'await' ждёт ответ от сервера, только потом заполняет 'res'
-  const res = await fetch(url);
-  // аналогично ждёт 'res' и заполняет 'body'
-  const body = await res.json();
-  return body;
+const getResourse = async url => {
+  const res = await fetch(url)
+
+  // проверка ответа от сервера
+  if (!res.ok) {
+    throw new Error(`${url}, received ${res.status}`)
+  }
+  const body = await res.json()
+  return body
 }
 
-getResourse('https://swapi.dev/api/people/1/')
+getResourse('https://swapi.dev/api/people/1122313/')
   .then(body => {
-    console.log(body);
+    console.log(body)
+  })
+  //отлавливает ошибки, но не серверные, выше отдельная проверка
+  .catch(err => {
+    console.error('Could not fetch', err)
   })
