@@ -34,8 +34,8 @@ export default class RandomPlanet extends Component {
   updatePlanet() {
     // id от 2 до 27
     setTimeout(() => {
-      // const id = Math.floor(Math.random() * 25) + 2
-      const id = 12000
+      const id = Math.floor(Math.random() * 25) + 2
+      // const id = 12000
       this.swapiService
         .getPlanet(id)
         .then(this.onPlanetLoaded)
