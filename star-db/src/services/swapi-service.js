@@ -1,5 +1,6 @@
 export default class SwapiService {
-  _apiBase = 'https://swapi.dev/api/'
+  // _apiBase = 'https://swapi.dev/api'
+  _apiBase = 'https://www.swapi.tech/api/'
 
   async getResourse(url) {
     const res = await fetch(`${this._apiBase}${url}`)
@@ -25,6 +26,7 @@ export default class SwapiService {
 
   async getAllPlanets() {
     const res = await this.getResourse(`planets/`)
+    console.log(res);
     return res.results.map(this._transformPlanet)
   }
 
@@ -44,41 +46,48 @@ export default class SwapiService {
   }
 
   _extractId(item) {
-    const idRegExp = /\/([0-9]*)\/$/
+    // для swapi.dev /\/([0-9]*)\/$/
+    const idRegExp = /\/([0-9]*)$/
     return item.url.match(idRegExp)[1]
   }
 
-  _transformPlanet(planet) {
+  _transformPlanet = (planet) => {
+    // Приставка new для swapi.tech
+    const planet_new = planet.result.properties
     return {
-      id: this._extractId(planet),
-      name: planet.name,
-      population: planet.population,
-      rotationPeriod: planet.rotation_period,
-      diameter: planet.diameter,
+      id: this._extractId(planet_new),
+      name: planet_new.name,
+      population: planet_new.population,
+      rotationPeriod: planet_new.rotation_period,
+      diameter: planet_new.diameter,
     }
   }
 
-  _transformStarship(starship) {
+  _transformStarship = (starship) => {
+    // Приставка new для swapi.tech
+    const starship_new = starship.result.properties
     return {
-      id: this._extractId(starship),
-      name: starship.name,
-      model: starship.model,
-      manufacturer: starship.manufacturer,
-      costInCredits: starship.costInCredits,
-      length: starship.length,
-      crew: starship.crew,
-      passengers: starship.passengers,
-      cargoCapasity: starship.cargoCapasity,
+      id: this._extractId(starship_new),
+      name: starship_new.name,
+      model: starship_new.model,
+      manufacturer: starship_new.manufacturer,
+      costInCredits: starship_new.costInCredits,
+      length: starship_new.length,
+      crew: starship_new.crew,
+      passengers: starship_new.passengers,
+      cargoCapasity: starship_new.cargoCapasity,
     }
   }
 
-  _transformPerson(person) {
+  _transformPerson = (person) => {
+    // Приставка new для swapi.tech
+    const person_new = person.result.properties
     return {
-      id: this._extractId(person),
-      name: person.name,
-      gender: person.gender,
-      birthYear: person.birthYear,
-      eyeColor: person.eyeColor,
+      id: this._extractId(person_new),
+      name: person_new.name,
+      gender: person_new.gender,
+      birthYear: person_new.birthYear,
+      eyeColor: person_new.eyeColor,
     }
   }
 }
