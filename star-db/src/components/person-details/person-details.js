@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SwapiService from '../../services/swapi-service'
+import Spinner from '../spinner/spinner'
 
 import './person-details.css'
 
@@ -14,8 +15,8 @@ export default class PersonDetails extends Component {
     this.updatePerson()
   }
 
-  componentDidUpdate(prevProps){
-    if(this.props.personId !== prevProps.personId){
+  componentDidUpdate(prevProps) {
+    if (this.props.personId !== prevProps.personId) {
       this.updatePerson()
     }
   }
@@ -32,13 +33,11 @@ export default class PersonDetails extends Component {
   }
   render() {
     if (!this.state.person) {
-      return <span>Select a person from a list</span>
+      return <Spinner />
     }
 
     const { id, name, gender, birthYear, eyeColor } =
       this.state.person
-
-    console.log(id, name, gender, birthYear, eyeColor);
 
     return (
       <div className='person-details card'>
