@@ -18,3 +18,9 @@
 .person-details .list-group-item .term{
   margin-right: .5rem;
 }
+
+.person-details.card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
