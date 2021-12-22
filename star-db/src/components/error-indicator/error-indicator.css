@@ -13,3 +13,13 @@
 .error-indicator .boom {
   font-size: 1.7rem;
 }
+
+div#root > div.error-indicator{
+  padding-top: 15%;
+  font-size: 1.7em;
+}
+
+div.container.stardb-app > div.error-indicator{
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+}
