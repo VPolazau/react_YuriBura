@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import ErrorButton from '../error-button/error-button'
 import ErrorIndicator from '../error-indicator/error-indicator'
 import Header from '../header'
+import ItemList from '../item-list'
 import PeoplePage from '../people-page'
+import PersonDetails from '../person-details'
 import RandomPlanet from '../random-planet'
 // import PlanetDetails from '../planet-details'
 // import StarshipDetails from '../starship-details'
 import './app.css'
-
-
 
 export default class App extends Component {
   state = {
@@ -24,15 +24,13 @@ export default class App extends Component {
     })
   }
 
-  
-
   componentDidCatch() {
     console.log('componentDidCatch()')
     this.setState({ hasError: true })
   }
 
   render() {
-    if(this.state.hasError){
+    if (this.state.hasError) {
       return <ErrorIndicator />
     }
 
@@ -54,10 +52,18 @@ export default class App extends Component {
           </button>
           <ErrorButton />
         </div>
-        
+
         <PeoplePage />
-        <PeoplePage />
-        <PeoplePage />
+
+        <div className='row mb2'>
+          <div className='col-md-6'>
+            <ItemList onItemSelected={this.onPersonSelected} />
+          </div>
+          <div className='col-md-6'>
+            <PersonDetails personId={this.state.selectedPerson} />
+          </div>
+        </div>
+
         {/* <PlanetDetails />
         <StarshipDetails /> */}
       </div>
