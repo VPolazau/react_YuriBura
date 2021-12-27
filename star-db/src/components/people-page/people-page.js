@@ -6,7 +6,7 @@ import PersonDetails from '../person-details'
 import './people-page.css'
 
 export default class PeoplePage extends Component {
-  swapiService = new SwapiService();
+  swapiService = new SwapiService()
   state = {
     selectedPerson: 1,
     hasError: false,
@@ -35,6 +35,9 @@ export default class PeoplePage extends Component {
           <ItemList
             onItemSelected={this.onPersonSelected}
             getData={this.swapiService.getAllPeople}
+            renderItem={({ name, gender, birthYear }) =>
+              `${name} (${gender}, ${birthYear})`
+            }
           />
         </div>
         <div className='col-md-6'>
