@@ -3,8 +3,10 @@ import SwapiService from '../../services/swapi-service'
 import ErrorBoundry from '../error-boundry'
 import ErrorButton from '../error-button/error-button'
 import Header from '../header'
+import ItemDetails from '../item-details'
 import PeoplePage from '../people-page'
 import RandomPlanet from '../random-planet'
+import Row from '../row'
 import './app.css'
 
 export default class App extends Component {
@@ -27,52 +29,29 @@ export default class App extends Component {
       <RandomPlanet />
     ) : null
 
+    const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.swapiService
+
+    const personDetails = (
+      <ItemDetails
+        itemId={11}
+        getData={getPerson}
+        getImageUrl={getPersonImage}
+      />
+    )
+
+    const starshipDetails = (
+      <ItemDetails
+        itemId={5}
+        getData={getStarship}
+        getImageUrl={getStarshipImage}
+      />
+    )
+
     return (
       <ErrorBoundry>
         <div className='container stardb-app'>
           <Header />
-          {planet}
-
-          <div className='row mb2 button-row'>
-            <button
-              className='toggle-planet btn btn-warning btn-lg'
-              onClick={this.toggleRandomPlanet}
-            >
-              Toggle Random Planet
-            </button>
-            <ErrorButton />
-          </div>
-
-          <PeoplePage />
-
-          {/* <div className='row mb2'>
-          <div className='col-md-6'>
-            <ItemList
-              onItemSelected={this.onItemSelected}
-              getData={this.swapiService.getAllPlanets}
-              renderItem={item => item.name}
-            />
-          </div>
-          <div className='col-md-6'>
-            <ItemDetails itemId={this.state.selectedItem} />
-          </div>
-        </div> */}
-
-          {/* <div className='row mb2'>
-          <div className='col-md-6'>
-            <ItemList
-              onItemSelected={this.onItemSelected}
-              getData={this.swapiService.getAllStarships}
-              renderItem={item => item.name}
-            />
-          </div>
-          <div className='col-md-6'>
-            <ItemDetails itemId={this.state.selectedItem} />
-          </div>
-        </div> */}
-
-          {/* <PlanetDetails />
-        <StarshipDetails /> */}
+          <Row left={personDetails} right={starshipDetails} />
         </div>
       </ErrorBoundry>
     )
