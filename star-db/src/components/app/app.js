@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import SwapiService from '../../services/swapi-service'
+import ErrorBoundry from '../error-boundry'
 import ErrorButton from '../error-button/error-button'
-import ErrorIndicator from '../error-indicator/error-indicator'
 import Header from '../header'
-import ItemList from '../item-list'
 import PeoplePage from '../people-page'
-import PersonDetails from '../person-details'
 import RandomPlanet from '../random-planet'
-// import PlanetDetails from '../planet-details'
-// import StarshipDetails from '../starship-details'
 import './app.css'
 
 export default class App extends Component {
@@ -16,7 +12,6 @@ export default class App extends Component {
 
   state = {
     showRandomPlanet: true,
-    hasError: false,
   }
 
   toggleRandomPlanet = () => {
@@ -27,38 +22,30 @@ export default class App extends Component {
     })
   }
 
-  componentDidCatch() {
-    console.log('componentDidCatch()')
-    this.setState({ hasError: true })
-  }
-
   render() {
-    if (this.state.hasError) {
-      return <ErrorIndicator />
-    }
-
     const planet = this.state.showRandomPlanet ? (
       <RandomPlanet />
     ) : null
 
     return (
-      <div className='container stardb-app'>
-        <Header />
-        {planet}
+      <ErrorBoundry>
+        <div className='container stardb-app'>
+          <Header />
+          {planet}
 
-        <div className='row mb2 button-row'>
-          <button
-            className='toggle-planet btn btn-warning btn-lg'
-            onClick={this.toggleRandomPlanet}
-          >
-            Toggle Random Planet
-          </button>
-          <ErrorButton />
-        </div>
+          <div className='row mb2 button-row'>
+            <button
+              className='toggle-planet btn btn-warning btn-lg'
+              onClick={this.toggleRandomPlanet}
+            >
+              Toggle Random Planet
+            </button>
+            <ErrorButton />
+          </div>
 
-        <PeoplePage />
+          <PeoplePage />
 
-        <div className='row mb2'>
+          {/* <div className='row mb2'>
           <div className='col-md-6'>
             <ItemList
               onItemSelected={this.onPersonSelected}
@@ -69,9 +56,9 @@ export default class App extends Component {
           <div className='col-md-6'>
             <PersonDetails personId={this.state.selectedPerson} />
           </div>
-        </div>
+        </div> */}
 
-        <div className='row mb2'>
+          {/* <div className='row mb2'>
           <div className='col-md-6'>
             <ItemList
               onItemSelected={this.onPersonSelected}
@@ -82,11 +69,12 @@ export default class App extends Component {
           <div className='col-md-6'>
             <PersonDetails personId={this.state.selectedPerson} />
           </div>
-        </div>
+        </div> */}
 
-        {/* <PlanetDetails />
+          {/* <PlanetDetails />
         <StarshipDetails /> */}
-      </div>
+        </div>
+      </ErrorBoundry>
     )
   }
 }
