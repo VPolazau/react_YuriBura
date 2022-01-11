@@ -1,5 +1,6 @@
 export default class SwapiService {
-  _apiBase = 'https://swapi.py4e.com/api'
+  // _apiBase = 'https://swapi.py4e.com/api'
+  _apiBase = 'https://swapi.dev/api'
   _imageBase = 'https://starwars-visualguide.com/assets/img'
 
   getResourse = async url => {
@@ -45,15 +46,15 @@ export default class SwapiService {
     return this._transformStarship(planet)
   }
 
-  getPersonImage = ({id}) => {
+  getPersonImage = ({ id }) => {
     return `${this._imageBase}/characters/${id}.jpg`
   }
 
-  getStarshipImage = ({id}) => {
+  getStarshipImage = ({ id }) => {
     return `${this._imageBase}/starships/${id}.jpg`
   }
 
-  getPlanetImage = ({id}) => {
+  getPlanetImage = ({ id }) => {
     return `${this._imageBase}/planets/${id}.jpg`
   }
 
@@ -78,11 +79,11 @@ export default class SwapiService {
       name: starship.name,
       model: starship.model,
       manufacturer: starship.manufacturer,
-      costInCredits: starship.costInCredits,
+      costInCredits: starship.cost_in_credits,
       length: starship.length,
       crew: starship.crew,
       passengers: starship.passengers,
-      cargoCapasity: starship.cargoCapasity,
+      cargoCapasity: starship.cargo_capacity,
     }
   }
 
