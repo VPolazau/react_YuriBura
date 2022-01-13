@@ -1,6 +1,6 @@
 export default class SwapiService {
-  // _apiBase = 'https://swapi.py4e.com/api'
-  _apiBase = 'https://swapi.dev/api'
+  _apiBase = 'https://swapi.py4e.com/api'
+  // _apiBase = 'https://swapi.dev/api'
   _imageBase = 'https://starwars-visualguide.com/assets/img'
 
   getResourse = async url => {
@@ -27,7 +27,6 @@ export default class SwapiService {
 
   getAllPlanets = async () => {
     const res = await this.getResourse(`/planets/`)
-    console.log(res)
     return res.results.map(this._transformPlanet)
   }
 
