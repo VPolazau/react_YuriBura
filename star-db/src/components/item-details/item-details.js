@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import SwapiService from '../../services/swapi-service'
 import ErrorButton from '../error-button/error-button'
 import Spinner from '../spinner/spinner'
 
@@ -17,8 +16,6 @@ const Record = ({ item, field, label }) => {
 export { Record }
 
 export default class ItemDetails extends Component {
-  swapiService = new SwapiService()
-
   state = {
     item: null,
     loading: true,
@@ -57,7 +54,6 @@ export default class ItemDetails extends Component {
     }
 
     const { item, loading, image } = this.state
-    // const { id, name, gender, birthYear, eyeColor } = item
 
     const spinner = loading ? <Spinner /> : null
     const content = !loading ? (
@@ -74,7 +70,7 @@ export default class ItemDetails extends Component {
 }
 
 const ItemView = ({ item, image, props }) => {
-  const { id, name, gender, birthYear, eyeColor } = item
+  const { name } = item
 
   return (
     <React.Fragment>
@@ -83,7 +79,7 @@ const ItemView = ({ item, image, props }) => {
       <div className='card-body'>
         <h4>{name}</h4>
         <ul className='list-group list-group-flush'>
-          {React.Children.map(props.children, (child) => {
+          {React.Children.map(props.children, child => {
             return React.cloneElement(child, { item })
           })}
         </ul>
