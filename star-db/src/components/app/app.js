@@ -4,6 +4,7 @@ import ErrorBoundry from '../error-boundry'
 import Header from '../header'
 import RandomPlanet from '../random-planet'
 import Row from '../row'
+import { SwapiServiceProvider } from '../swapi-service-context/swapi-service-context'
 import {
   PersonList,
   PlanetList,
@@ -37,19 +38,21 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <div className='container stardb-app'>
-          <Header />
+        <SwapiServiceProvider value={this.swapiService}>
+          <div className='container stardb-app'>
+            <Header />
 
-          <PersonDetails itemId={11} />
-          <PlanetDetails itemId={5} />
-          <StarshipDetails itemId={9} />
+            <PersonDetails itemId={11} />
+            <PlanetDetails itemId={5} />
+            <StarshipDetails itemId={9} />
 
-          <PersonList />
-          <StarshipList />
-          <PlanetList />
+            <PersonList />
+            <StarshipList />
+            <PlanetList />
 
-          {/* <Row left={personDetails} right={starshipDetails} /> */}
-        </div>
+            {/* <Row left={personDetails} right={starshipDetails} /> */}
+          </div>
+        </SwapiServiceProvider>
       </ErrorBoundry>
     )
   }
