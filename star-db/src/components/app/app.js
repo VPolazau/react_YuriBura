@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SwapiService from '../../services/swapi-service'
+import DummySwapiSwrvice from '../../services/dummy-swapi-service'
 import ErrorBoundry from '../error-boundry'
 import Header from '../header'
 import RandomPlanet from '../random-planet'
@@ -17,7 +18,7 @@ import {
 import './app.css'
 
 export default class App extends Component {
-  swapiService = new SwapiService()
+  swapiService = new DummySwapiService()
 
   state = {
     showRandomPlanet: true,
