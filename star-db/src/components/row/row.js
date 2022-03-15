@@ -11,7 +11,7 @@ const Row = ({ left, right }) => {
   )
 }
 
-Row.PropTypes = {
+Row.propTypes = {
   // PropTypes.node проверяет, что соответвующий property - это что-то, ...
   // ... что можно отрендерить в jsx
   // Есть PropTypes.element, но он более узкий и принимает только реакт элементы
