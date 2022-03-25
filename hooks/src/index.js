@@ -1,7 +1,5 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import ReactDOM from 'react-dom'
-
-const MyContext = React.createContext()
 
 const App = () => {
   const [value, setValue] = useState(0)
@@ -12,8 +10,8 @@ const App = () => {
       <div>
         <button onClick={() => setValue(v => v + 1)}>+</button>
         <button onClick={() => setVisible(false)}>hide</button>
-        <ClassCounter value={value} />
-        <HookCounter value={value} />
+        {/* <HookCounter value={value} /> */}
+        <Notification />
       </div>
     )
   } else {
@@ -23,26 +21,30 @@ const App = () => {
 
 const HookCounter = ({ value }) => {
   useEffect(() => {
-    console.log('useEffect')
-    return () => console.log('clear');
-  }, [value])
+    console.log('mount')
+    return () => console.log('unmount')
+  }, [])
+
+  useEffect(() => {
+    console.log('update')
+  })
+
+  // useEffect(() => () => {
+  //   console.log('unmount')
+  // }, [])
+
   return <p>{value}</p>
 }
 
-class ClassCounter extends Component {
-  componentDidMount(){
-    console.log('class:mount');
-  }
-  componentDidUpdate(props){
-    console.log('class:update');
-  }
-  componentWillUnmount(){
-    console.log('class:unmount');
-  }
-  
-  render(){
-    return <p>{this.props.value}</p>
-  }
+const Notification = () => {
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setVisible(false), 3500)
+    return () => clearTimeout(timeout)
+  }, [])
+
+  return <div>{visible && <p>Hello</p>}</div>
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
