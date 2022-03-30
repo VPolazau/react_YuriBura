@@ -24,6 +24,7 @@ const usePlanetName = (id) => {
 
   useEffect(() => {
     let cencelled = false
+    
     fetch(`https://swapi.py4e.com/api/planets/${id}/`)
       .then(res => res.json())
       .then(data => !cencelled && setName(data.name))
