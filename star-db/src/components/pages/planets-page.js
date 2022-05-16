@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import Row from '../row'
 import { PlanetList, PlanetDetails } from '../sw-components'
 
-export default class PeoplePage extends Component {
+export default class PlanetsPage extends Component {
   state = {
-    selectedItem: 8,
+    selectedItem: null,
   }
 
   onItemSelected = selectedItem => {

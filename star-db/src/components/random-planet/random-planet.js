@@ -13,7 +13,7 @@ export default class RandomPlanet extends Component {
   }
 
   static propTypes = {
-    updateInterval: PropTypes.number
+    updateInterval: PropTypes.number,
   }
   swapiService = new SwapiService()
 
@@ -26,7 +26,7 @@ export default class RandomPlanet extends Component {
   componentDidMount() {
     const { updateInterval } = this.props
     this.updatePlanet()
-    const interval = setInterval(this.updatePlanet, updateInterval)
+    setInterval(this.updatePlanet, updateInterval)
   }
 
   componentWillUnmount() {
@@ -78,8 +78,9 @@ const PlanetView = ({ planet }) => {
   return (
     <React.Fragment>
       <img
-        className='planet-image'
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+        alt='planet for star-db'
+        className='planet-image'
       />
       <div>
         <h4>{name}</h4>
