@@ -5,7 +5,7 @@ import ErrorBoundry from '../error-boundry'
 import Header from '../header'
 import RandomPlanet from '../random-planet'
 import { SwapiServiceProvider } from '../swapi-service-context/swapi-service-context'
-import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages'
+import { PeoplePage, PlanetsPage, StarshipsPage, LoginPage, SecretPage } from '../pages'
 import { StarshipDetails } from '../sw-components'
 
 import './app.css'
@@ -15,6 +15,11 @@ import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-
 export default class App extends Component {
     state = {
         swapiService: new SwapiService(),
+        isLoggedIn: false,
+    }
+
+    onLoggin = () => {
+        this.setState({ isLoggedIn: true })
     }
 
     onServiceChange = () => {
@@ -28,9 +33,10 @@ export default class App extends Component {
     }
 
     render() {
+        const { swapiService, isLoggedIn } = this.state
         return (
             <ErrorBoundry>
-                <SwapiServiceProvider value={this.state.swapiService}>
+                <SwapiServiceProvider value={swapiService}>
                     <Router>
                         <div className='container stardb-app'>
                             <Header onServiceChange={this.onServiceChange} />
@@ -47,6 +53,14 @@ export default class App extends Component {
                                     path='/starships/:starshipId'
                                     element={<InvoiceStarships />}
                                 />
+                                <Route
+                                    path='/login'
+                                    element={<LoginPage onLogin={this.onLoggin} />}
+                                ></Route>
+                                <Route
+                                    path='/secret'
+                                    element={<SecretPage isLoggedIn={isLoggedIn} />}
+                                ></Route>
                             </Routes>
                         </div>
                     </Router>
