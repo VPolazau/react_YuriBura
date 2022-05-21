@@ -9,7 +9,7 @@ const SecretPage = ({ isLoggedIn }) => {
             </div>
         )
     }
-    return <Navigate to={'/login'}/>
+    return <Navigate to={'/login'} />
 }
 
-export default SecretPage 
+export default SecretPage

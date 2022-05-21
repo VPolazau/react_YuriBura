@@ -44,7 +44,7 @@ export default class App extends Component {
 
                             <Routes>
                                 <Route path='/' element={<h1>Welcome to StarDB</h1>} />
-                                <Route path='/people/' element={<PeoplePage />}>
+                                <Route path='/people/*' element={<PeoplePage />}>
                                     <Route path=':person' element={<PeoplePage />} />
                                 </Route>
                                 <Route path='/planets/' element={<PlanetsPage />} />
