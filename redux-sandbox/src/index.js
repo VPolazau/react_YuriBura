@@ -16,33 +16,35 @@ const reducer = (state = 0, action) => {
 
 const store = createStore(reducer)
 
+// Action Creators
+const inc = () => ({ type: 'INC' })
+const dec = () => ({ type: 'DEC' })
+const rnd = payload => ({ type: 'RND', payload })
+
 document
   .getElementById('inc')
   .addEventListener('click', () => {
-    store.dispatch({type:'INC'})
+    store.dispatch(inc())
   })
 
 document
   .getElementById('dec')
   .addEventListener('click', () => {
-    store.dispatch({type:'DEC'})
+    store.dispatch(dec())
   })
 
-  document
+document
   .getElementById('rnd')
   .addEventListener('click', () => {
-    const payload = Math.floor(Math.random()*10)
-    store.dispatch({
-      type:'RND',
-      payload
-    })
-  })
+    const payload = Math.floor(Math.random() * 10)
+    store.dispatch(rnd(payload))
+})
 
 const update = () => {
   document
     .getElementById('counter')
     .innerHTML = store.getState()
-    console.log(store.getState())
+  console.log(store.getState())
 }
 
 store.subscribe(update)
