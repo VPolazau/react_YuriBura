@@ -1,50 +1,24 @@
-import { legacy_createStore as createStore } from 'redux'
+import reducer from './reducer'
+import * as actions from './actions'
+import { bindActionCreators, legacy_createStore as createStore } from 'redux'
 // import { configureStore } from '@reduxjs/toolkit'
 
-const reducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'RND':
-      return state + action.payload
-    case 'INC':
-      return state + 1
-    case 'DEC':
-      return state - 1
-    default:
-      return state
-  }
-}
-
 const store = createStore(reducer)
+const { dispatch } = store
 
-// Action Creators
-const inc = () => ({ type: 'INC' })
-const dec = () => ({ type: 'DEC' })
-const rnd = payload => ({ type: 'RND', payload })
+const { inc, dec, rnd } = bindActionCreators(actions, dispatch)
 
-document
-  .getElementById('inc')
-  .addEventListener('click', () => {
-    store.dispatch(inc())
-  })
+document.getElementById('inc').addEventListener('click', inc)
 
-document
-  .getElementById('dec')
-  .addEventListener('click', () => {
-    store.dispatch(dec())
-  })
+document.getElementById('dec').addEventListener('click', dec)
 
-document
-  .getElementById('rnd')
-  .addEventListener('click', () => {
-    const payload = Math.floor(Math.random() * 10)
-    store.dispatch(rnd(payload))
+document.getElementById('rnd').addEventListener('click', () => {
+  const payload = Math.floor(Math.random() * 10)
+  rnd(payload)
 })
 
 const update = () => {
-  document
-    .getElementById('counter')
-    .innerHTML = store.getState()
-  console.log(store.getState())
+  document.getElementById('counter').innerHTML = store.getState()
 }
 
 store.subscribe(update)
