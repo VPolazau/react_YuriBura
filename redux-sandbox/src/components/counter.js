@@ -27,17 +27,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-
-  const { inc, dec, rnd } = bindActionCreators(actions, dispatch)
-   
-  return {
-    inc,
-    dec,
-    rnd: () => {
-      const randomValue = Math.floor(Math.random() * 10)
-      rnd(randomValue)
-    },
-  }
+  return bindActionCreators(actions, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+
+// можно не создавать mapDispatchToProps, т.к. функция connect умеет делать это
+// передавая объект это стработает
+// export default connect(mapStateToProps, actions)(Counter)
