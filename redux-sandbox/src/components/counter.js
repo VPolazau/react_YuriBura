@@ -26,12 +26,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(actions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
-
-// можно не создавать mapDispatchToProps, т.к. функция connect умеет делать это
-// передавая объект это стработает
-// export default connect(mapStateToProps, actions)(Counter)
+export default connect(mapStateToProps, actions)(Counter)
